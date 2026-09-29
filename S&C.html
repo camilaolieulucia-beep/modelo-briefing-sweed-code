@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sabor entre Camadas | Confeitaria & Agendamentos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --secondary: #38bdf8;
+      --bg-light: #f8fafc;
+      --surface: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      letter-spacing: -0.01em;
+    }
+
+    /* Header & Navigation */
+    header {
+      background-color: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+    }
+
+    .logo-circle {
+      width: 44px;
+      height: 44px;
+      background-color: var(--primary);
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);
+      letter-spacing: -0.5px;
+    }
+
+    .logo-text {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(180deg, #e0f2fe 0%, var(--bg-light) 100%);
+      padding: 4rem 2rem 3rem 2rem;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .notice-banner {
+      background-color: #ffffff;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      box-shadow: var(--shadow-sm);
+      text-align: left;
+      font-size: 0.95rem;
+      color: var(--text-main);
+    }
+
+    /* Main Container */
+    .main-container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    .section-header {
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* Product Grid & Cards */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .product-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .product-img-wrapper {
+      position: relative;
+      width: 100%;
+      height: 230px;
+      overflow: hidden;
+      background-color: #f1f5f9;
+    }
+
+    .product-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover .product-img {
+      transform: scale(1.03);
+    }
+
+    .product-info {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-tag {
+      align-self: flex-start;
+      background-color: #e0f2fe;
+      color: var(--primary);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .product-tag.pronta-entrega {
+      background-color: #dcfce7;
+      color: #15803d;
+    }
+
+    .product-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .product-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+      line-height: 1.5;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      gap: 0.5rem;
+    }
+
+    .product-price {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: var(--primary);
+      color: white;
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-full {
+      width: 100%;
+    }
+
+    .cart-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background-color: #f1f5f9;
+      padding: 0.25rem 0.5rem;
+      border-radius: 8px;
+    }
+
+    /* Checkout & Order Summary Container */
+    .checkout-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .checkout-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Order Summary Card */
+    .summary-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      border: 2px solid #e0f2fe;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 90px;
+    }
+
+    .summary-title {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .summary-item-card {
+      background: #f8fafc;
+      padding: 0.85rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 0.85rem;
+    }
+
+    .summary-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .summary-item-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-main);
+    }
+
+    .summary-item-price {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 0.95rem;
+    }
+
+    .summary-item-details {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .mini-qty-input, .mini-kg-input {
+      width: 60px;
+      padding: 0.25rem 0.4rem;
+      font-size: 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    .remove-btn-link {
+      background: none;
+      border: none;
+      color: #ef4444;
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+    }
+
+    .empty-cart-msg {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    /* Form Section */
+    .form-section {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 2rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    input, select, textarea {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: var(--text-main);
+      background-color: #ffffff;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    }
+
+    /* Upload de foto de exemplo */
+    .file-upload-box {
+      border: 2px dashed var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      text-align: center;
+      background-color: #f8fafc;
+      cursor: pointer;
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    .file-upload-box:hover {
+      border-color: var(--primary);
+      background-color: #f0f9ff;
+    }
+
+    .file-upload-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .file-upload-text {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .image-preview-container {
+      display: none;
+      margin-top: 0.75rem;
+      align-items: center;
+      gap: 0.75rem;
+      background-color: #ffffff;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    .image-preview-thumb {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .image-preview-info {
+      font-size: 0.825rem;
+      color: var(--text-main);
+      flex-grow: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .remove-img-btn {
+      background: none;
+      border: none;
+      color: #ef4444;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    footer {
+      background-color: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      margin-top: 5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-container { flex-direction: column; gap: 1rem; }
+      .hero h1 { font-size: 2.1rem; }
+      .form-section { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo-container">
+        <div class="logo-circle">S&C</div>
+        <span class="logo-text">Sabor entre Camadas</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#catalogo">1. Escolher Produtos</a></li>
+        <li><a href="#cadastro">2. Cadastro & Finalização</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Alta Confeitaria & Agendamentos</h1>
+      <p>Escolha e ajuste a quantidade desejada de cada item antes de finalizar seu cadastro.</p>
+      
+      <div class="notice-banner">
+        <span style="font-size: 1.2rem;">⏱️</span>
+        <div>
+          <strong>Política de Encomendas:</strong> Pedidos personalizados necessitam de antecedência mínima de <strong>48 horas</strong>[cite: 1].
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="main-container">
+
+    <!-- PASSO 1: SELEÇÃO DE PRODUTOS -->
+    <div class="section-header" id="catalogo">
+      <h2 class="section-title">1. Escolha os seus Produtos</h2>
+      <p class="section-subtitle">Adicione quantos bolos, tortas ou doces desejar em um único pedido</p>
+    </div>
+
+    <div class="products-grid">
+      
+      <!-- Bolo de Aniversário Personalizado -->
+      <div class="product-card" id="card-bolo">
+        <div class="product-img-wrapper">
+          <img src="images.jpg" alt="Bolo de Aniversário Rosa Personalizado Parabéns" class="product-img">
+        </div>
+        <div class="product-info">
+          <span class="product-tag">Encomenda</span>
+          <h3 class="product-title">Bolo de Aniversário Personalizado</h3>
+          <p class="product-desc">Bolo festivo com acabamento em chantininho, decoração sob medida e opção de envio de foto de referência.</p>
+          <div class="product-footer">
+            <div class="product-price">R$ 74,00 / kg</div>
+            <div class="cart-controls" id="controls-bolo">
+              <button type="button" class="btn" onclick="addItem('bolo', 'Bolo de Aniversário', 74, true)">+ Adicionar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Torta Salgada Especial de Frango -->
+      <div class="product-card" id="card-torta">
+        <div class="product-img-wrapper">
+          <img src="images (1).jpg" alt="Torta Salgada de Frango Cremoso com Requeijão" class="product-img">
+        </div>
+        <div class="product-info">
+          <span class="product-tag">Encomenda</span>
+          <h3 class="product-title">Torta Salgada Especial de Frango</h3>
+          <p class="product-desc">Torta salgada artesanal super recheada com frango desfiado temperado, camada generosa de requeijão cremoso e massa dourada.</p>
+          <div class="product-footer">
+            <div class="product-price">R$ 65,00 / un</div>
+            <div class="cart-controls" id="controls-torta">
+              <button type="button" class="btn" onclick="addItem('torta', 'Torta Salgada de Frango', 65, false)">+ Adicionar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trufas Finas -->
+      <div class="product-card" id="card-trufas">
+        <div class="product-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1548907040-4baa42d10919?auto=format&fit=crop&w=600&q=80" alt="Trufas Finas de Chocolate" class="product-img">
+        </div>
+        <div class="product-info">
+          <span class="product-tag pronta-entrega">Pronta Entrega</span>
+          <h3 class="product-title">Trufas Artesanais (Tradicionais & Fit)</h3>
+          <p class="product-desc">Trufas de chocolate nobre com recheios cremosos e opções sem adição de açúcar[cite: 1].</p>
+          <div class="product-footer">
+            <div class="product-price">R$ 5,00 / un</div>
+            <div class="cart-controls" id="controls-trufas">
+              <button type="button" class="btn" onclick="addItem('trufas', 'Trufas Artesanais', 5, false)">+ Adicionar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bolo Caseiro Tradicional -->
+      <div class="product-card" id="card-bolocaseiro">
+        <div class="product-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80" alt="Bolo Caseiro de Chocolate" class="product-img">
+        </div>
+        <div class="product-info">
+          <span class="product-tag pronta-entrega">Pronta Entrega</span>
+          <h3 class="product-title">Bolo Caseiro Tradicional</h3>
+          <p class="product-desc">Delicioso bolo caseiro de chocolate com cobertura fluida de brigadeiro artesanal[cite: 1].</p>
+          <div class="product-footer">
+            <div class="product-price">R$ 35,00 / un</div>
+            <div class="cart-controls" id="controls-bolocaseiro">
+              <button type="button" class="btn" onclick="addItem('bolocaseiro', 'Bolo Caseiro Tradicional', 35, false)">+ Adicionar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Especial: Item Personalizado / Outro -->
+      <div class="product-card" id="card-outro" style="border: 2px dashed var(--primary);">
+        <div class="product-img-wrapper" style="display: flex; align-items: center; justify-content: center; background: #e0f2fe;">
+          <span style="font-size: 3rem;">✨</span>
+        </div>
+        <div class="product-info">
+          <span class="product-tag">Sob Consulta</span>
+          <h3 class="product-title">Outro Item / Pedido Especial</h3>
+          <p class="product-desc">Deseja um produto diferente do catálogo? Adicione essa opção e descreva seu pedido no formulário abaixo.</p>
+          <div class="product-footer">
+            <div class="product-price" style="font-size:0.9rem; color:var(--text-muted);">A combinar</div>
+            <div class="cart-controls" id="controls-outro">
+              <button type="button" class="btn" onclick="addItem('outro', 'Outro Item (Sob Consulta)', 0, false)">+ Adicionar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PASSO 2: RESUMO DO PEDIDO E CADASTRO DO CLIENTE -->
+    <div class="section-header" id="cadastro">
+      <h2 class="section-title">2. Cadastro do Cliente & Detalhes do Pedido</h2>
+      <p class="section-subtitle">Ajuste as quantidades individuais se necessário e preencha o cadastro</p>
+    </div>
+
+    <div class="checkout-wrapper">
+      
+      <!-- Resumo do Pedido Selecionado -->
+      <div class="summary-card">
+        <h3 class="summary-title">Itens Selecionados</h3>
+        <div id="cartSummary">
+          <div class="empty-cart-msg">Nenhum produto adicionado ao pedido ainda. Clique em "+ Adicionar" nos itens acima.</div>
+        </div>
+
+        <div style="font-size: 1.2rem; font-weight: 700; color: var(--text-main); margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 1rem; display: flex; justify-content: space-between;">
+          <span>Total Estimado:</span>
+          <span id="totalPrice" style="color: var(--primary);">R$ 0,00</span>
+        </div>
+      </div>
+
+      <!-- Formulário de Cadastro do Cliente -->
+      <div class="form-section">
+        <form id="orderForm">
+          <div class="form-grid">
+            
+            <div class="form-group full-width">
+              <label for="nome">Nome Completo do Cliente *</label>
+              <input type="text" id="nome" name="nome" required placeholder="Mariana Silva">
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-mail *</label>
+              <input type="email" id="email" name="email" required placeholder="mariana@exemplo.com">
+            </div>
+
+            <div class="form-group">
+              <label for="telefone">Telefone / WhatsApp *</label>
+              <input type="tel" id="telefone" name="telefone" required placeholder="(61) 98765-4321">
+            </div>
+
+            <div class="form-group">
+              <label for="tipo_retirada">Tipo de Solicitação *</label>
+              <select id="tipo_retirada" required>
+                <option value="retirada">Retirada no Local</option>
+                <option value="entrega">Entrega ao Domicílio</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="forma_pagamento">Forma de Pagamento *</label>
+              <select id="forma_pagamento" name="forma_pagamento" required>
+                <option value="PIX">PIX</option>
+                <option value="Cartão de Crédito">Cartão de Crédito</option>
+                <option value="Cartão de Débito">Cartão de Débito</option>
+              </select>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="endereco">Endereço de Entrega (Se aplicável)</label>
+              <input type="text" id="endereco" name="endereco" placeholder="Rua, Número, Bairro e Ponto de Referência">
+            </div>
+
+            <div class="form-group">
+              <label for="data_agendamento">Data Desejada (Mínimo 48h) *</label>
+              <input type="date" id="data_agendamento" name="data_agendamento" required>
+            </div>
+
+            <div class="form-group">
+              <label for="horario_agendamento">Horário Preferencial *</label>
+              <input type="time" id="horario_agendamento" name="horario_agendamento" required>
+            </div>
+
+            <!-- Upload de Foto de Exemplo -->
+            <div class="form-group full-width" id="fotoExemploGroup" style="display: none;">
+              <label for="foto_exemplo">Enviar Foto de Exemplo / Referência de Decoração</label>
+              <div class="file-upload-box" onclick="document.getElementById('foto_exemplo').click();">
+                <div class="file-upload-icon">📸</div>
+                <div class="file-upload-text">Clique para selecionar uma imagem do bolo ou doces desejados</div>
+                <input type="file" id="foto_exemplo" accept="image/*" style="display: none;" onchange="handleImageUpload(this)">
+              </div>
+              <div class="image-preview-container" id="previewContainer">
+                <img src="" id="previewImage" class="image-preview-thumb" alt="Prévia">
+                <span id="previewName" class="image-preview-info"></span>
+                <button type="button" class="remove-img-btn" onclick="removeUploadedImage()">✕</button>
+              </div>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="observacoes">Observações / Detalhes dos Produtos *</label>
+              <textarea id="observacoes" name="observacoes" rows="3" placeholder="Sabor da massa, recheios de cada bolo, mensagens personalizadas ou especificações de itens fora do catálogo..."></textarea>
+            </div>
+
+            <div class="form-group full-width">
+              <button type="submit" class="btn btn-full" style="padding: 1rem; font-size: 1rem;">Concluir Cadastro & Confirmar Pedido</button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Sabor entre Camadas (S&C) | Squad Sweet Code</p>
+    <p style="font-size: 0.825rem; margin-top: 0.5rem; color: #94a3b8;">Política de Cancelamento: Cancelamentos sem taxa aplicável mediante aviso com antecedência mínima de 48h[cite: 1].</p>
+  </footer>
+
+  <script>
+    const cart = {};
+
+    function addItem(id, name, unitPrice, isKg) {
+      if (!cart[id]) {
+        cart[id] = { name, unitPrice, isKg, qty: 1, kg: 1.0 };
+      } else {
+        cart[id].qty += 1;
+      }
+      renderCart();
+      updateCardControl(id, name, unitPrice, isKg);
+    }
+
+    function removeItem(id) {
+      if (cart[id]) {
+        const name = cart[id].name;
+        const unitPrice = cart[id].unitPrice;
+        const isKg = cart[id].isKg;
+
+        delete cart[id];
+        renderCart();
+        updateCardControl(id, name, unitPrice, isKg);
+      }
+    }
+
+    function updateItemQty(id, qtyVal) {
+      const val = parseInt(qtyVal) || 1;
+      if (cart[id]) {
+        cart[id].qty = val < 1 ? 1 : val;
+        renderCart();
+        updateCardControl(id, cart[id].name, cart[id].unitPrice, cart[id].isKg);
+      }
+    }
+
+    function updateItemKg(id, kgVal) {
+      const val = parseFloat(kgVal) || 1.0;
+      if (cart[id]) {
+        cart[id].kg = val < 0.5 ? 0.5 : val;
+        renderCart();
+      }
+    }
+
+    function updateCardControl(id, name, unitPrice, isKg) {
+      const container = document.getElementById(`controls-${id}`);
+      if (!cart[id] || cart[id].qty === 0) {
+        container.innerHTML = `<button type="button" class="btn" onclick="addItem('${id}', '${name}', ${unitPrice}, ${isKg})">+ Adicionar</button>`;
+      } else {
+        container.innerHTML = `<span style="font-size:0.85rem; font-weight:700; color:var(--primary);">✓ No Pedido (${cart[id].qty}x)</span>`;
+      }
+    }
+
+    function renderCart() {
+      const cartSummary = document.getElementById('cartSummary');
+      const fotoGroup = document.getElementById('fotoExemploGroup');
+      const keys = Object.keys(cart);
+
+      if (keys.length === 0) {
+        cartSummary.innerHTML = '<div class="empty-cart-msg">Nenhum produto adicionado ao pedido ainda. Clique em "+ Adicionar" nos itens acima.</div>';
+        document.getElementById('totalPrice').innerText = 'R$ 0,00';
+        fotoGroup.style.display = 'none';
+        return;
+      }
+
+      let html = '';
+      let total = 0;
+      let hasBolo = false;
+      let hasOutro = false;
+
+      keys.forEach(id => {
+        const item = cart[id];
+        let itemTotal = 0;
+
+        if (item.isKg) {
+          hasBolo = true;
+          itemTotal = item.unitPrice * item.kg * item.qty;
+          html += `
+            <div class="summary-item-card">
+              <div class="summary-item-header">
+                <span class="summary-item-title">${item.name}</span>
+                <span class="summary-item-price">R$ ${itemTotal.toFixed(2).replace('.', ',')}</span>
+              </div>
+              <div class="summary-item-details">
+                <div>
+                  Qtd: <input type="number" class="mini-qty-input" min="1" value="${item.qty}" onchange="updateItemQty('${id}', this.value)">
+                  &nbsp; Peso: <input type="number" class="mini-kg-input" min="0.5" step="0.5" value="${item.kg}" onchange="updateItemKg('${id}', this.value)"> kg
+                </div>
+                <button type="button" class="remove-btn-link" onclick="removeItem('${id}')">Remover</button>
+              </div>
+            </div>
+          `;
+        } else if (item.unitPrice === 0) {
+          hasOutro = true;
+          html += `
+            <div class="summary-item-card">
+              <div class="summary-item-header">
+                <span class="summary-item-title">${item.name}</span>
+                <span class="summary-item-price">A combinar</span>
+              </div>
+              <div class="summary-item-details">
+                <div>
+                  Qtd: <input type="number" class="mini-qty-input" min="1" value="${item.qty}" onchange="updateItemQty('${id}', this.value)">
+                </div>
+                <button type="button" class="remove-btn-link" onclick="removeItem('${id}')">Remover</button>
+              </div>
+            </div>
+          `;
+        } else {
+          itemTotal = item.unitPrice * item.qty;
+          html += `
+            <div class="summary-item-card">
+              <div class="summary-item-header">
+                <span class="summary-item-title">${item.name}</span>
+                <span class="summary-item-price">R$ ${itemTotal.toFixed(2).replace('.', ',')}</span>
+              </div>
+              <div class="summary-item-details">
+                <div>
+                  Qtd: <input type="number" class="mini-qty-input" min="1" value="${item.qty}" onchange="updateItemQty('${id}', this.value)"> un
+                </div>
+                <button type="button" class="remove-btn-link" onclick="removeItem('${id}')">Remover</button>
+              </div>
+            </div>
+          `;
+        }
+
+        total += itemTotal;
+      });
+
+      cartSummary.innerHTML = html;
+      document.getElementById('totalPrice').innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+
+      fotoGroup.style.display = (hasBolo || hasOutro) ? 'block' : 'none';
+    }
+
+    /* Upload de Foto de Exemplo */
+    function handleImageUpload(input) {
+      if (input.files && input.files[0]) {
+        const file = input.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+          document.getElementById('previewImage').src = e.target.result;
+          document.getElementById('previewName').textContent = file.name;
+          document.getElementById('previewContainer').style.display = 'flex';
+        }
+
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function removeUploadedImage() {
+      document.getElementById('foto_exemplo').value = '';
+      document.getElementById('previewContainer').style.display = 'none';
+      document.getElementById('previewImage').src = '';
+      document.getElementById('previewName').textContent = '';
+    }
+
+    // Configuração da data mínima (48 horas)
+    const dataInput = document.getElementById('data_agendamento');
+    const hoje = new Date();
+    hoje.setDate(hoje.getDate() + 2);
+    const minDate = hoje.toISOString().split('T')[0];
+    dataInput.min = minDate;
+
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      if (Object.keys(cart).length === 0) {
+        alert('Por favor, adicione pelo menos um item ao pedido antes de concluir o cadastro.');
+        document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+
+      const nomeCliente = document.getElementById('nome').value;
+      const telefone = document.getElementById('telefone').value;
+      const dataSelecionada = new Date(dataInput.value);
+      const dataCancelamento = new Date(dataSelecionada);
+      dataCancelamento.setDate(dataCancelamento.getDate() - 2);
+      
+      const dataFormatted = dataCancelamento.toLocaleDateString('pt-BR');
+      const horario = document.getElementById('horario_agendamento').value;
+      const temFoto = document.getElementById('foto_exemplo').files.length > 0;
+
+      let resumoItens = Object.values(cart).map(i => `${i.qty}x ${i.name} ${i.isKg ? `(${i.kg}kg cada)` : ''}`).join('\n - ');
+
+      alert(`✅ Cadastro e Pedido realizados com sucesso!\n\n` +
+            `Cliente: ${nomeCliente}\n\n` +
+            `Itens do Pedido:\n - ${resumoItens}\n\n` +
+            (temFoto ? `Foto de referência anexada: Sim\n` : '') +
+            `Número do Pedido: PED${Math.floor(Math.random() * 899999 + 100000)}\n` +
+            `Status: AGUARDANDO CONFIRMAÇÃO\n` +
+            `Cancelamento grátis até ${dataFormatted} às ${horario} (48h antes).\n\n` +
+            `📱 O resumo do seu pedido foi gerado e será enviado via WhatsApp para o número (${telefone}).`);
+    });
+  </script>
+
+</body>
+</html>
