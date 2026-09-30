@@ -1,0 +1,119 @@
+{
+  "loja": {
+    "nome": "Sabor entre Camadas (S&C)",
+    "squad": "Sweet Code",
+    "politica_encomendas": {
+      "antecedencia_minima_horas": 48,
+      "cancelamento_gratis_antecedencia_horas": 48
+    }
+  },
+  "produtos": [
+    {
+      "id": "bolo",
+      "nome": "Bolo de Aniversário Personalizado",
+      "categoria": "Encomenda",
+      "preco_unitario": 74.00,
+      "unidade_medida": "kg",
+      "requer_peso": true,
+      "permite_foto_referencia": true,
+      "descricao": "Bolo festivo com acabamento em chantininho e decoração sob medida.",
+      "imagem_url": "images.jpg"
+    },
+    {
+      "id": "torta",
+      "nome": "Torta Salgada Especial de Frango",
+      "categoria": "Encomenda",
+      "preco_unitario": 65.00,
+      "unidade_medida": "unidade",
+      "requer_peso": false,
+      "permite_foto_referencia": false,
+      "descricao": "Torta salgada artesanal super recheada com frango desfiado temperado e requeijão cremoso.",
+      "imagem_url": "images (1).jpg"
+    },
+    {
+      "id": "trufas",
+      "nome": "Trufas Artesanais (Tradicionais & Fit)",
+      "categoria": "Pronta Entrega",
+      "preco_unitario": 5.00,
+      "unidade_medida": "unidade",
+      "requer_peso": false,
+      "permite_foto_referencia": false,
+      "descricao": "Trufas de chocolate nobre com recheios cremosos e opções sem adição de açúcar.",
+      "imagem_url": "https://images.unsplash.com/photo-1548907040-4baa42d10919"
+    },
+    {
+      "id": "bolocaseiro",
+      "nome": "Bolo Caseiro Tradicional",
+      "categoria": "Pronta Entrega",
+      "preco_unitario": 35.00,
+      "unidade_medida": "unidade",
+      "requer_peso": false,
+      "permite_foto_referencia": false,
+      "descricao": "Delicioso bolo caseiro de chocolate com cobertura fluida de brigadeiro artesanal.",
+      "imagem_url": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c"
+    },
+    {
+      "id": "outro",
+      "nome": "Outro Item / Pedido Especial",
+      "categoria": "Sob Consulta",
+      "preco_unitario": 0.00,
+      "unidade_medida": "a combinar",
+      "requer_peso": false,
+      "permite_foto_referencia": true,
+      "descricao": "Deseja algo exclusivo fora do catálogo? Adicione este item e anexe a foto de exemplo.",
+      "imagem_url": null
+    }
+  ],
+  "formas_pagamento": [
+    "PIX",
+    "Cartão de Crédito",
+    "Cartão de Débito"
+  ],
+  "tipos_solicitacao": [
+    "Retirada no Local",
+    "Entrega ao Domicílio"
+  ],
+  "exemplo_payload_pedido": {
+    "numero_pedido": "PED849201",
+    "status": "AGUARDANDO CONFIRMAÇÃO",
+    "canal_envio_resumo": "WhatsApp",
+    "cliente": {
+      "nome": "Mariana Silva",
+      "email": "mariana@exemplo.com",
+      "telefone": "(61) 98765-4321",
+      "endereco_entrega": "Rua das Flores, nº 123, Bairro Jardim"
+    },
+    "agendamento": {
+      "tipo_solicitacao": "Entrega ao Domicílio",
+      "data_agendamento": "2026-10-02",
+      "horario_preferencial": "15:00",
+      "limite_cancelamento_gratis": "2026-09-30T15:00:00"
+    },
+    "itens": [
+      {
+        "produto_id": "bolo",
+        "nome": "Bolo de Aniversário Personalizado",
+        "quantidade": 1,
+        "peso_kg": 2.0,
+        "preco_unitario_kg": 74.00,
+        "subtotal": 148.00
+      },
+      {
+        "produto_id": "trufas",
+        "nome": "Trufas Artesanais (Tradicionais & Fit)",
+        "quantidade": 10,
+        "preco_unitario": 5.00,
+        "subtotal": 50.00
+      }
+    ],
+    "pagamento": {
+      "forma": "PIX",
+      "total_estimado": 198.00
+    },
+    "detalhes_adicionais": {
+      "foto_referencia_anexada": true,
+      "nome_arquivo_foto": "modelo_bolo_morangos.jpg",
+      "observacoes": "Massa de baunilha com recheio de ninho com morangos. Escrever 'Parabéns Mariana' no topo."
+    }
+  }
+}
