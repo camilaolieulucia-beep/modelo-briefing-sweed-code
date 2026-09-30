@@ -1,10 +1,15 @@
 📋 MODELO DE BRIEFING & DESCOBERTA DE PRODUTO
+
 Alinhamento Estratégico: Turma de Marketing de Empresas & Ciência de Dados / Dev
 
 Identificação da Squad:	Sweet Code
+
 Empresa / Cliente (Marketing):	Sabor entre camadas (S&C)
+
 Integrantes de Marketing (Stakeholders):	Ana Paula,Érica, Daniele 
+
 Integrantes de Ciência de Dados / Dev:	Lúcia, Maria Eduarda, Larissa
+
 Data do Alinhamento:	22/09/2026
 
 
